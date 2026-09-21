@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday RAKKANA BOONTEM ❤️</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Tahoma,sans-serif;color:#6b3048;background:linear-gradient(135deg,#ffd6e7,#fff0f6,#ffe2ef);overflow-x:hidden}
+section{min-height:100vh;padding:45px 18px;display:flex;align-items:center;justify-content:center;position:relative}
+.card{width:min(850px,100%);background:rgba(255,255,255,.84);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.8);border-radius:30px;padding:35px 25px;text-align:center;box-shadow:0 15px 45px rgba(130,50,85,.15)}
+h1{font-size:clamp(38px,8vw,70px);margin:8px 0;color:#e94f86;text-shadow:0 0 18px #fff}
+h2{color:#e75480}
+.hero{background:radial-gradient(circle at center,rgba(255,255,255,.55),transparent 45%)}
+.cake{font-size:85px;animation:bounce 2s infinite}
+button{border:0;border-radius:999px;padding:14px 28px;font-size:17px;background:#e75480;color:#fff;cursor:pointer;box-shadow:0 7px 20px rgba(231,84,128,.3);transition:.25s}
+button:hover{transform:scale(1.05)}
+.message{font-size:18px;line-height:2}
+.envelope-wrap{cursor:pointer;display:inline-block}
+.envelope{width:min(430px,85vw);height:270px;position:relative;margin:25px auto}
+.env-body{position:absolute;inset:45px 0 0;background:#ffc1d8;border-radius:10px;box-shadow:0 12px 30px #b85a7c44}
+.flap{position:absolute;left:0;right:0;top:45px;margin:auto;width:0;height:0;border-left:215px solid transparent;border-right:215px solid transparent;border-top:145px solid #ff9fc2;transform-origin:top;transition:1s;z-index:3}
+.letter{position:absolute;left:8%;right:8%;top:75px;height:170px;background:#fff;padding:25px 15px;border-radius:8px;transition:1s;z-index:2;box-shadow:0 5px 15px #0001}
+.envelope.open .flap{transform:rotateX(180deg);z-index:1}
+.envelope.open .letter{transform:translateY(-105px);height:220px}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.photo{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#f5c2d4;box-shadow:0 7px 18px #0002;cursor:pointer;transition:.3s}
+.photo:hover{transform:translateY(-5px) scale(1.02)}
+.photo:last-child{grid-column:1/-1;aspect-ratio:16/9}
+.cake-big{font-size:100px;animation:cakePulse 1.6s infinite}
+.final h2{font-size:34px}
+.floating{position:fixed;bottom:-40px;pointer-events:none;z-index:10;animation:floatUp linear forwards}
+.sparkle{position:fixed;pointer-events:none;z-index:20;font-size:24px;animation:spark .8s forwards}
+#lightbox{position:fixed;inset:0;background:rgba(35,10,22,.88);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+#lightbox img{max-width:95%;max-height:85vh;border-radius:18px;box-shadow:0 0 35px #fff5}
+.close{position:absolute;right:25px;top:18px;font-size:40px;color:#fff;cursor:pointer}
+.note{font-size:14px;color:#9b6176;margin-top:12px}
+.choice-row{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.choice-btn{min-width:180px}
+.yes-btn{background:#e75480}
+.no-btn{background:#f3a6bd}
+#answer{font-size:20px;line-height:1.8;color:#d13f70;margin-top:24px;font-weight:bold}
+@keyframes bounce{50%{transform:translateY(-15px)}}
+@keyframes cakePulse{50%{transform:scale(1.08)}}
+@keyframes floatUp{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+@keyframes spark{to{transform:translateY(-80px) scale(1.8);opacity:0}}
+@media(max-width:600px){.gallery{grid-template-columns:1fr}.photo:last-child{grid-column:auto}.message{font-size:16px}.flap{border-left-width:42vw;border-right-width:42vw;border-top-width:120px}}
+</style>
+</head>
+<body>
+<audio id="birthdayMusic" preload="auto" loop><source src="music.mp3" type="audio/mpeg"></audio>
+
+
+<section class="hero">
+  <div class="card">
+    <div class="cake">🎂</div>
+    <h1>Happy Birthday</h1>
+    <h2>RAKKANA BOONTEM ❤️</h2>
+    <p>วันนี้เป็นวันพิเศษของคนพิเศษนะ 🥰</p>
+    <button onclick="openGiftAndGo()">เปิดของขวัญ 🎁</button>
+  </div>
+</section>
+
+<section id="gift">
+  <div class="card">
+    <h2>🎁 มีของขวัญให้ด้วยนะ</h2>
+    <div style="font-size:100px;cursor:pointer" onclick="openGift()">🎁</div>
+    <p id="giftText">กดที่กล่องของขวัญสิ ✨</p>
+  </div>
+</section>
+
+<section id="letter">
+  <div class="card">
+    <h2>💌 มีจดหมายถึงเธอ</h2>
+    <div class="envelope-wrap" onclick="toggleLetter()">
+      <div class="envelope" id="env">
+        <div class="env-body"></div>
+        <div class="letter">💗<br>ข้อความพิเศษสำหรับคนพิเศษ<br><br>กดเพื่อเปิดจดหมาย</div>
+        <div class="flap"></div>
+      </div>
+    </div>
+    <p>แตะที่ซองจดหมายเพื่อเปิด 💕</p>
+  </div>
+</section>
+
+<section id="message">
+  <div class="card">
+    <h2>🎂 สุขสันต์วันเกิดนะเธอ ❤️</h2>
+    <div class="message">
+      <p>ขอให้เธอมีความสุขมาก ๆ ในทุก ๆ วันเลยนะ ❤️</p>
+      <p>ขอให้เจอแต่เรื่องดี ๆ มีแต่รอยยิ้ม และสมหวังในทุกเรื่องที่ตั้งใจไว้ 😊</p>
+      <p>แล้วก็อยากบอกว่า เธอเป็นผู้หญิงที่ทั้งสวยและน่ารักมาก ๆ เลยนะ 🥰</p>
+      <p>ขอให้น่ารักและสวยแบบนี้ไปตลอดเลยนะ ❤️</p>
+      <p>ขอบคุณนะที่เข้ามาให้เราได้รู้จักกัน และขอบคุณสำหรับทุกช่วงเวลาที่เราได้คุยกันนะ</p>
+      <p>ขอให้เราได้คุยกันและได้รู้จักกันไปเรื่อย ๆ แบบนี้นะ</p>
+      <p>และหวังว่าวันเกิดในปีต่อ ๆ ไป เราจะยังได้เป็นคนที่คอยอวยพรวันเกิดให้เธออยู่แบบนี้ทุกปีเลยนะ ❤️</p>
+    </div>
+    <button onclick="go('photos')">ดูรูปของคนพิเศษ 📸</button>
+  </div>
+</section>
+
+<section id="photos">
+  <div class="card">
+    <h2>📸 รูปของคนพิเศษ ❤️</h2>
+    <div class="gallery">
+      <img class="photo" src="photo1.jpg" alt="รูปที่ 1" onclick="showPhoto(this)">
+      <img class="photo" src="photo2.jpg" alt="รูปที่ 2" onclick="showPhoto(this)">
+      <img class="photo" src="photo3.jpg" alt="รูปที่ 3" onclick="showPhoto(this)">
+      <img class="photo" src="photo4.jpg" alt="รูปที่ 4" onclick="showPhoto(this)">
+      <img class="photo" src="photo5.jpg" alt="รูปที่ 5" onclick="showPhoto(this)">
+    </div>
+    <p class="note">ใส่รูปของคุณโดยตั้งชื่อ photo1.jpg ถึง photo5.jpg ไว้โฟลเดอร์เดียวกับไฟล์นี้</p>
+    <button onclick="go('cake')">ไปต่อ 🎂</button>
+  </div>
+</section>
+
+<section id="cake">
+  <div class="card">
+    <div class="cake-big">🎂</div>
+    <h1>Happy Birthday!</h1>
+    <h2>RAKKANA BOONTEM ❤️</h2>
+    <p>อธิษฐานแล้วเป่าเทียนเลยนะ 🕯️✨</p>
+    <button onclick="blow()">เป่าเทียน 🎉</button>
+    <p id="blowText"></p>
+  </div>
+</section>
+
+<section id="relationship">
+  <div class="card final">
+    <div style="font-size:75px">🥰❤️</div>
+    <h1>เรามาเอาคำตอบจากเธอ</h1>
+    <p class="message">เรามาเป็นแฟนกันไหมครับ</p>
+    <div class="choice-row">
+      <button class="choice-btn yes-btn" onclick="sayYes()">เป็นแฟนกัน ❤️</button>
+      <button class="choice-btn no-btn" onclick="sayNo()">ยังไม่พร้อมเป็นแฟน 🥺</button>
+    </div>
+    <p id="answer"></p>
+  </div>
+</section>
+
+<section>
+  <div class="card final">
+    <div style="font-size:70px">❤️</div>
+    <h2>สุขสันต์วันเกิดนะเธอ 💕</h2>
+    <p class="message">ขอให้ปีนี้เป็นอีกหนึ่งปีที่เต็มไปด้วยความสุข รอยยิ้ม และเรื่องราวดี ๆ นะ</p>
+    <p class="message">ขอให้เราได้อยู่ในวันเกิดของกันและกันไปอีกหลาย ๆ ปีเลยนะ ❤️</p>
+    <div style="font-size:55px">💗✨💕</div>
+  </div>
+</section>
+
+<div id="lightbox" onclick="hidePhoto()">
+  <span class="close">×</span>
+  <img id="bigPhoto" src="" alt="รูปขนาดใหญ่">
+</div>
+
+<script>
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function startBirthdayMusic(){
+  const music=document.getElementById('birthdayMusic');
+  if(music){
+    music.volume=0.75;
+    music.play().catch(()=>{});
+  }
+}
+function openGiftAndGo(){
+  startBirthdayMusic();
+  burst();
+  go('gift');
+}
+function openGift(){
+  const music=document.getElementById('birthdayMusic');
+  music.volume=1.0;
+  music.play().catch(()=>{});
+  startBirthdayMusic();
+  document.getElementById('giftText').textContent='เปิดแล้ว! ของขวัญคือคำอวยพรและความรู้สึกดี ๆ ที่อยากมอบให้ ❤️';
+  burst();
+  setTimeout(()=>go('letter'),900);
+}
+function toggleLetter(){
+  const e=document.getElementById('env');
+  e.classList.toggle('open');
+  if(e.classList.contains('open')){
+    burst();
+    setTimeout(()=>go('message'),1200);
+  }
+}
+function blow(){
+  document.querySelector('.cake-big').textContent='🍰';
+  document.getElementById('blowText').textContent='ขอให้คำอธิษฐานเป็นจริงทุกอย่างเลยนะ ❤️✨';
+  burst();
+  setTimeout(()=>go('relationship'),900);
+}
+function sayYes(){
+  document.getElementById('answer').textContent='ส่งรูปมาให้เราดูหน่อยนะว่าเราสองคนเป็นแฟนกันแล้ว 🥰📸';
+  burst();
+}
+function sayNo(){
+  document.getElementById('answer').textContent='ไม่เป็นไรเราก็ยังจะจีบต่อไป ❤️';
+}
+function showPhoto(img){
+  document.getElementById('bigPhoto').src=img.src;
+  document.getElementById('lightbox').style.display='flex';
+}
+function hidePhoto(){document.getElementById('lightbox').style.display='none';}
+function burst(){
+  for(let i=0;i<25;i++){
+    const s=document.createElement('div');
+    s.className='sparkle';
+    s.textContent=['✨','💖','💕','🌸'][Math.floor(Math.random()*4)];
+    s.style.left=(45+Math.random()*10)+'vw';
+    s.style.top=(45+Math.random()*10)+'vh';
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),900);
+  }
+}
+function heart(){
+  const h=document.createElement('div');
+  h.className='floating';
+  h.textContent=Math.random()>.5?'❤️':'💕';
+  h.style.left=Math.random()*100+'vw';
+  h.style.fontSize=(15+Math.random()*25)+'px';
+  h.style.animationDuration=(4+Math.random()*4)+'s';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8500);
+}
+setInterval(heart,650);
+</script>
+</body>
+</html>
